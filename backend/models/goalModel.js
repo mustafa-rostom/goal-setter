@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const goalSchema = mongoose.schema({
-    test: {
+const goalSchema = mongoose.Schema({
+    text: {
         type: String,
-        required: [truem, 'Please add a text value'],
+        required: [true, 'Please add a text value'],
     }
 },
     {
