@@ -36,7 +36,7 @@ const regesterUser = asynchandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
-            token:generateToken(user._id)
+            token: generateToken(user._id)
         })
     }
     else {
@@ -53,7 +53,7 @@ const regesterUser = asynchandler(async (req, res) => {
 const loginUser = asynchandler(async (req, res) => {
     const { email, password } = req.body;
     //check for user email
-    const user =await User.findOne({ email })
+    const user = await User.findOne({ email })
     if (user && (await bcrypt.compare(password, user.password))) {
         res.json({
             _id: user.id,
@@ -68,14 +68,19 @@ const loginUser = asynchandler(async (req, res) => {
 })
 //@desc Get new user
 //@route GET /api/users/me
-//@access public
+//@access private
 const getMe = asynchandler(async (req, res) => {
-    res.json({ message: 'Regester user' })
+    const { _id,name,email } = await User.findById(req.user.id)
+    res.status(200).json({
+        id:_id,
+        name,
+        email
+    })
 })
 
 // Generate JWT
-const generateToken=(id)=>{
-    return jwt.sign({id},process.env.JWT_SECRET,{
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: '30d'
     })
 }
