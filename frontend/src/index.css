@@ -59,12 +59,16 @@ h3 {
 }
 
 .header ul li {
-  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  
 }
+
 
 .header ul li a {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
 
 .header ul li a:hover {
