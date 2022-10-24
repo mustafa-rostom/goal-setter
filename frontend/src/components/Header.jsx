@@ -8,7 +8,9 @@ function Header() {
     const dispatch= useDispatch();
     const {user}= useSelector((state)=>state.auth)
 
+    
     const onLogout=()=>{
+        console.log('clicked')
         dispatch(logout())
         dispatch(reset())
         navigate('/')

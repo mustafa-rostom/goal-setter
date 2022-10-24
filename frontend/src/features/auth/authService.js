@@ -27,7 +27,6 @@ const login = async (userData) => {
 // logout user 
 const logout =()=>{
     localStorage.removeItem('user');
-    
 }
 const authService = {
     register,
